@@ -1,0 +1,18 @@
+rule Testable_Gwisin_Helldown_Like_Ransomware
+{
+    meta:
+        author = "Piyush"
+        description = "Simplified test version of GwisinLocker and Helldown YARA rules"
+        testable = true
+
+    strings:
+        $gwisin_marker = "GwisinLocker" nocase
+        $gwisin_url = "Www.Gwisin.Co.Kr" nocase
+        $helldown_string1 = "hell_down" nocase
+        $helldown_string2 = "korea_ransomware_team" nocase
+        $shared_term = "ransom"
+
+    condition:
+        any of ($gwisin_marker, $gwisin_url) and $shared_term or
+        2 of ($helldown_string1, $helldown_string2, $shared_term)
+}
