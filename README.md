@@ -12,9 +12,10 @@ My objective is to create a custom YARA rule that replicates the above two rules
 ## Command to inject the errors
 ### Using tee for Elevated Write Access
 #### For GwisinLocker (Korean threat actor, Linux-based ransomware)
-`echo -n "GwisinLocker ransom Www.Gwisin.Co.Kr" | sudo tee vm_agent.bin > /dev/null`
-
-`echo -ne '\x47\x77\x69\x73\x69\x6E\x00\x6C\x6F\x63\x6B' | sudo tee -a vm_agent.bin > /dev/null`
+```
+echo -n "GwisinLocker ransom Www.Gwisin.Co.Kr" | sudo tee vm_agent.bin > /dev/null
+echo -ne '\x47\x77\x69\x73\x69\x6E\x00\x6C\x6F\x63\x6B' | sudo tee -a vm_agent.bin > /dev/null
+```
 
 **Verify the output using Hexdump**
 ```
@@ -28,8 +29,10 @@ $ hexdump -C vm_agent.bin
 
 #### For Helldown (also Korean-themed ransomware)
 
-`echo -n "hell_down korea_ransomware_team ransom" | sudo tee init_exec_lockdown.sh > /dev/null`
-`echo -ne '\x48\x65\x6C\x6C\x44\x6F\x77\x6E\x00\x6C\x6F\x63\x6B' | sudo tee -a init_exec_lockdown.sh > /dev/null`
+```
+echo -n "hell_down korea_ransomware_team ransom" | sudo tee init_exec_lockdown.sh > /dev/null
+echo -ne '\x48\x65\x6C\x6C\x44\x6F\x77\x6E\x00\x6C\x6F\x63\x6B' | sudo tee -a init_exec_lockdown.sh > /dev/null
+```
 
 **Verify the output using Hexdump**
 ```
