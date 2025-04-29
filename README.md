@@ -5,6 +5,11 @@ The problem with the **[ReversingLabs](https://github.com/reversinglabs/reversin
 
 My objective is to create a custom YARA rule that replicates the above two rules and also to understand how to inject these signatures into files so that the rule can detect them.
 
+## Install YARA from Ubuntu Repositories
+`sudo apt update`
+`sudo apt install yara`
+`yara --version`
+
 ## Command to inject the errors
 ### Using tee for Elevated Write Access
 
