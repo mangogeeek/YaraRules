@@ -1,18 +1,31 @@
-rule Testable_Gwisin_Helldown_Like_Ransomware
+rule Linux_Ransomware
 {
     meta:
-        author = "Piyush"
-        description = "Simplified test version of GwisinLocker and Helldown YARA rules"
+        author = "YourName"
+        description = "Replica of GwisinLocker and Helldown ransomware with string and hex indicator>
+        date = "2025-04-29"
+        reference = "Inspired by ReversingLabs YARA rules"
         testable = true
 
     strings:
-        $gwisin_marker = "GwisinLocker" nocase
-        $gwisin_url = "Www.Gwisin.Co.Kr" nocase
-        $helldown_string1 = "hell_down" nocase
-        $helldown_string2 = "korea_ransomware_team" nocase
-        $shared_term = "ransom"
+        // GwisinLocker-style strings
+        $gwisin_str1 = "GwisinLocker" nocase
+        $gwisin_str2 = "Www.Gwisin.Co.Kr" nocase
+
+        // Helldown-style strings
+        $helldown_str1 = "hell_down" nocase
+        $helldown_str2 = "korea_ransomware_team" nocase
+
+        // Common ransomware indicator
+        $common_str = "ransom" nocase
+
+        // Simple testable binary hex pattern (represents "Gwisin\0lock")
+        $fake_hex = { 47 77 69 73 69 6E 00 6C 6F 63 6B }
 
     condition:
-        any of ($gwisin_marker, $gwisin_url) and $shared_term or
-        2 of ($helldown_string1, $helldown_string2, $shared_term)
+        (
+            (any of ($gwisin_str*) and $common_str)
+            or (2 of ($helldown_str*) and $common_str)
+        )
+        and $fake_hex
 }
