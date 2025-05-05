@@ -9,6 +9,9 @@
 ```bash
 showmount -e 10.169.28.147 | grep default-container-45667019721350
 ```
+```bash
+showmount -e 10.169.28.147 | egrep -v 10.169.32.182
+```
 
 ****Expected Output:****
 
