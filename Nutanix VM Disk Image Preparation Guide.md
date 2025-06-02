@@ -142,7 +142,7 @@ sudo virt-sparsify --tmp /dev/shm --compress \
 ****Verify Checksum:****
 
 ```bash
-sha256sum /mnt/image/hycu-rshield-5.1.0-418.qcow2
+sha256sum /mnt/image/hycu-rshield-5.1.0-602.qcow2
 ```
 
 ******Output:******
@@ -156,13 +156,13 @@ sha256sum /mnt/image/hycu-rshield-5.1.0-418.qcow2
 ### **5.1 Copy Image to Nutanix Container**
 
 ```bash
-sudo rsync -avh --progress /mnt/image/hycu-rshield-5.1.0-418.qcow2 /mnt/test/
+sudo rsync -avh --progress /mnt/image/hycu-rshield-5.1.0-602.qcow2 /mnt/test/
 ```
 
 ### **5.2 Register Image via `acli`**
 
 ```bash
-acli image.create hycu-rshield-5.1.0-418 \
+acli image.create hycu-rshield-5.1.0-602 \
   image_type=kDiskImage \
   source_url=nfs://10.169.28.147/default-container-45667019721350/hycu-rshield-5.1.0-602.qcow2 \
   container=default-container-45667019721350
