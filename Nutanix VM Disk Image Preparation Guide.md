@@ -136,18 +136,18 @@ sudo qemu-img check /mnt/image/hycu-r-shield-image_v1.qcow2
 ```bash
 sudo virt-sparsify --tmp /dev/shm --compress \
   /mnt/image/hycu-r-shield-image_v1.qcow2 \
-  /mnt/image/hycu-rshield-5.1.0-602.qcow2
+  /mnt/image/hycu-r-shield-5.1.0-602.qcow2
 ```
 
 ****Verify Checksum:****
 
 ```bash
-sha256sum /mnt/image/hycu-rshield-5.1.0-602.qcow2
+sha256sum /mnt/image/hycu-r-shield-5.1.0-602.qcow2
 ```
 
 ******Output:******
 
-`f4030c235400fb1a2b6b1884b09092aedbc388c28f575d63be394b6abdab442a hycu-rshield-5.1.0-602.qcow2`
+`f4030c235400fb1a2b6b1884b09092aedbc388c28f575d63be394b6abdab442a hycu-r-shield-5.1.0-602.qcow2`
 
 * * *
 
@@ -156,15 +156,15 @@ sha256sum /mnt/image/hycu-rshield-5.1.0-602.qcow2
 ### **5.1 Copy Image to Nutanix Container**
 
 ```bash
-sudo rsync -avh --progress /mnt/image/hycu-rshield-5.1.0-602.qcow2 /mnt/test/
+sudo rsync -avh --progress /mnt/image/hycu-r-shield-5.1.0-602.qcow2 /mnt/test/
 ```
 
 ### **5.2 Register Image via `acli`**
 
 ```bash
-acli image.create hycu-rshield-5.1.0-602 \
+acli image.create hycu-r-shield-5.1.0-602 \
   image_type=kDiskImage \
-  source_url=nfs://10.169.28.147/default-container-45667019721350/hycu-rshield-5.1.0-602.qcow2 \
+  source_url=nfs://10.169.28.147/default-container-45667019721350/hycu-r-shield-5.1.0-602.qcow2 \
   container=default-container-45667019721350
 ```
 
