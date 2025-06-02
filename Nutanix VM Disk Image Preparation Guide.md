@@ -41,7 +41,7 @@ df -h /mnt/test
 ### **2.1 Locate VM Disks Using Nutanix CLI**
 
 ```bash
-acli vm.get r-shield include_vmdisk_paths=true | grep -w vmdisk_nfs_path
+acli vm.get r-shield_Golden include_vmdisk_paths=true | grep -w vmdisk_nfs_path
 ```
 
 ****Output:****
@@ -51,7 +51,7 @@ acli vm.get r-shield include_vmdisk_paths=true | grep -w vmdisk_nfs_path
 ### **2.2 Identify Primary Disk**
 
 ```bash
-acli vm.disk_get r-shield disk_addr="scsi.0" | grep -w vmdisk_uuid
+acli vm.disk_get r-shield_Golden disk_addr="scsi.0" | grep -w vmdisk_uuid
 ```
 
 ****Output:****
