@@ -83,10 +83,7 @@ sudo rsync -avh --progress /mnt/test/.acropolis/vmdisk/39d4acd8-c22b-4f7d-9826-0
 ### **3.3 Convert RAW to QCOW2 Format**
 
 ```bash
-sudo qemu-img convert -p -f raw -O qcow2 \  
--o cluster_size=4k \  
-/mnt/image/39d4acd8-c22b-4f7d-9826-08121f706ed5 \  
-/mnt/image/hycu-r-shield-image_v1.qcow2
+sudo qemu-img convert -p -f raw -O qcow2 -o cluster_size=4k /mnt/image/39d4acd8-c22b-4f7d-9826-08121f706ed5 /mnt/image/hycu-r-shield-image_v1.qcow2
 ```
 
 ### **3.4 Sysprep (Generalize Image)**
