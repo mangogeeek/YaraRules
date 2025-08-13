@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Envelope xmlns="http://schemas.dmtf.org/ovf/envelope/1" 
+          xmlns:ovf="http://schemas.dmtf.org/ovf/envelope/1" 
+          xmlns:vmw="http://www.vmware.com/schema/ovf" 
+          xmlns:rasd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData" 
+          xmlns:vssd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData">
+
+  <References>
+    <File ovf:id="file1" ovf:href="hycu-r-shield-5.2.0-805.vmdk"/>
+  </References>
+
+  <DiskSection>
+    <Info>List of the virtual disks (fixed configuration)</Info>
+    <Disk ovf:capacityAllocationUnits="byte" 
+          ovf:format="http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized" 
+          ovf:diskId="vmdisk1" 
+          ovf:capacity="0" 
+          ovf:fileRef="file1"/>
+  </DiskSection>
+
+  <NetworkSection>
+    <Info>The list of logical networks</Info>
+    <Network ovf:name="VM Network">
+      <Description>Default VM Network</Description>
+    </Network>
+    <Network ovf:name="Bridged">
+      <Description>Bridged Network</Description>
+    </Network>
+    <Network ovf:name="NAT">
+      <Description>NAT Network</Description>
+    </Network>
+  </NetworkSection>
+
+  <VirtualSystem ovf:id="hycu-r-shield-5.2.0-805">
+    <Info>A Virtual system</Info>
+    <Name>hycu-r-shield-5.2.0-805</Name>
+
+    <OperatingSystemSection ovf:id="94" vmw:osType="ubuntu64Guest">
+      <Info>The operating system installed</Info>
+      <Description>Ubuntu Linux (64-bit)</Description>
+    </OperatingSystemSection>
+    
+    <ProductSection>
+      <Info>Custom Deployment Settings</Info>
+
+      <Property ovf:key="cpu.count" ovf:type="int" ovf:userConfigurable="true" ovf:value="2">
+        <Label>CPU Cores</Label>
+        <Description>Number of virtual CPUs (1-16)</Description>
+      </Property>
+
+      <Property ovf:key="memory.size" ovf:type="int" ovf:userConfigurable="true" ovf:value="4096">
+        <Label>Memory (MB)</Label>
+        <Description>Memory allocated to VM (1024-65536 MB)</Description>
+      </Property>
+
+      <Property ovf:key="network.mode" ovf:type="string" ovf:userConfigurable="true" ovf:value="VM Network">
+        <Label>Network Mode</Label>
+        <Description>Select network configuration</Description>
+      </Property>
+
+      <Property ovf:key="guestinfo.hostname" ovf:type="string" ovf:userConfigurable="true" ovf:value="hycu-r-shield-1001">
+        <Label>Hostname</Label>
+        <Description>Will be auto-generated as hycu-r-shield-XXXX (edit last 4 digits)</Description>
+      </Property>
+
+      <Property ovf:key="guestinfo.ipconfig" ovf:type="string" ovf:userConfigurable="true" ovf:value="dhcp">
+        <Label>IP Configuration</Label>
+        <Description>Select DHCP or static IP</Description>
+      </Property>
+
+      <Property ovf:key="guestinfo.ipaddress" ovf:type="string" ovf:userConfigurable="true" ovf:value="">
+        <Label>Static IP Address</Label>
+        <Description>Required if static IP is selected</Description>
+      </Property>
+
+      <Property ovf:key="guestinfo.dns" ovf:type="string" ovf:userConfigurable="true" ovf:value="8.8.8.8">
+        <Label>DNS Servers</Label>
+        <Description>Comma-separated DNS servers</Description>
+      </Property>
+
+      <Property ovf:key="guestinfo.timezone" ovf:type="string" ovf:userConfigurable="true" ovf:value="UTC">
+        <Label>Timezone</Label>
+        <Description>System timezone</Description>
+      </Property>
+    </ProductSection>
+
+    <VirtualHardwareSection>
+      <Item>
+        <rasd:AllocationUnits>hertz * 10^6</rasd:AllocationUnits>
+        <rasd:Description>Number of Virtual CPUs</rasd:Description>
+        <rasd:ElementName>2 virtual CPU(s)</rasd:ElementName>
+        <rasd:InstanceID>1</rasd:InstanceID>
+        <rasd:ResourceType>3</rasd:ResourceType>
+        <rasd:VirtualQuantity>2</rasd:VirtualQuantity>
+        <vmw:CoresPerSocket ovf:required="false">1</vmw:CoresPerSocket>
+      </Item>
+
+      <Item>
+        <rasd:AllocationUnits>byte * 2^20</rasd:AllocationUnits>
+        <rasd:Description>Memory Size</rasd:Description>
+        <rasd:ElementName>4096MB of memory</rasd:ElementName>
+        <rasd:InstanceID>2</rasd:InstanceID>
+        <rasd:ResourceType>4</rasd:ResourceType>
+        <rasd:VirtualQuantity>4096</rasd:VirtualQuantity>
+      </Item>
+
+      <Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:Description>SCSI Controller</rasd:Description>
+        <rasd:ElementName>SCSI Controller 1</rasd:ElementName>
+        <rasd:InstanceID>3</rasd:InstanceID>
+        <rasd:ResourceSubType>lsilogic</rasd:ResourceSubType>
+        <rasd:ResourceType>6</rasd:ResourceType>
+      </Item>
+
+      <Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:Description>SATA Controller</rasd:Description>
+        <rasd:ElementName>SATA Controller 1</rasd:ElementName>
+        <rasd:InstanceID>4</rasd:InstanceID>
+        <rasd:ResourceSubType>vmware.sata.ahci</rasd:ResourceSubType>
+        <rasd:ResourceType>20</rasd:ResourceType>
+      </Item>
+
+      <Item ovf:userConfigurable="false">
+        <rasd:AddressOnParent>0</rasd:AddressOnParent>
+        <rasd:ElementName>Hard Disk 1</rasd:ElementName>
+        <rasd:HostResource>ovf:/disk/vmdisk1</rasd:HostResource>
+        <rasd:InstanceID>5</rasd:InstanceID>
+        <rasd:Parent>3</rasd:Parent>
+        <rasd:ResourceType>17</rasd:ResourceType>
+      </Item>
+
+      <!-- Fixed NIC -->
+      <Item>
+        <rasd:AddressOnParent>0</rasd:AddressOnParent>
+        <rasd:AutomaticAllocation>true</rasd:AutomaticAllocation>
+        <rasd:ElementName>Network adapter 1</rasd:ElementName>
+        <rasd:InstanceID>6</rasd:InstanceID>
+        <rasd:ResourceSubType>VmxNet3</rasd:ResourceSubType>
+        <rasd:ResourceType>10</rasd:ResourceType>
+        <rasd:Connection>VM Network</rasd:Connection>
+      </Item>
+    </VirtualHardwareSection>
+  </VirtualSystem>
+</Envelope>
