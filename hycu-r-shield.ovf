@@ -6,7 +6,7 @@
           xmlns:vssd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData">
 
   <References>
-    <File ovf:id="file1" ovf:href="hycu-r-shield-5.2.0-805.vmdk"/>
+    <File ovf:id="file1" ovf:href="hycu-r-shield-5.2.0-825.vmdk"/>
   </References>
 
   <DiskSection>
@@ -31,9 +31,9 @@
     </Network>
   </NetworkSection>
 
-  <VirtualSystem ovf:id="hycu-r-shield-5.2.0-805">
+  <VirtualSystem ovf:id="hycu-r-shield-5.2.0-825">
     <Info>A Virtual system</Info>
-    <Name>hycu-r-shield-5.2.0-805</Name>
+    <Name>hycu-r-shield-5.2.0-825</Name>
 
     <OperatingSystemSection ovf:id="94" vmw:osType="ubuntu64Guest">
       <Info>The operating system installed</Info>
