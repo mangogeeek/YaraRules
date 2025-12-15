@@ -14,7 +14,7 @@
     <Disk ovf:capacityAllocationUnits="byte" 
           ovf:format="http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized" 
           ovf:diskId="vmdisk1" 
-          ovf:capacity="0" 
+          ovf:capacity="26843545600" 
           ovf:fileRef="file1"/>
   </DiskSection>
 
@@ -48,7 +48,7 @@
         <Description>Number of virtual CPUs (1-16)</Description>
       </Property>
 
-      <Property ovf:key="memory.size" ovf:type="int" ovf:userConfigurable="true" ovf:value="4096">
+      <Property ovf:key="memory.size" ovf:type="int" ovf:userConfigurable="true" ovf:value="8192">
         <Label>Memory (MB)</Label>
         <Description>Memory allocated to VM (1024-65536 MB)</Description>
       </Property>
